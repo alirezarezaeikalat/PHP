@@ -111,7 +111,31 @@ form data
 18. We can use isset() function to check if some variable is set or not
 
 19. We can use $_GET[''] array for the variables that sends to us with
-  get method
+  get method. $_GET is a associative array
 
+[ATTENTION]
 20. for protecting from XSS attacks always use htmlspecialchars() to make
-  the special characters to html entities
+  the special characters to html entities(string that start with & and
+  ends with semicolon). always for echoing to the browser
+
+21. It is always good idea to check form inputs in server side as well as
+  front side using empty() function
+
+22. We can use filters (built in functions) in PHP for validating inputs
+    for example:
+              filter_var($email, FILTER_VALIDATE_EMAIL);
+
+23. We can use preg_match(regex, var) fucntion to check for the 
+regular expression. (regex and var are strings)
+
+24. array_filter($someArray, $callback=null)
+   cycle through the elements and perform call back function if 
+   the call back returns true for a element that element will be in
+   the return array else it will remove, remember the index of the 
+   array will be saved
+
+25. header('Location: index.php');
+    we can redirect to another file with 302 code; 
+
+26. in mysql there is no string for column instead it has VARCHAR you can
+use this with max-length of 255, and use TIMESTAMP for created_at
