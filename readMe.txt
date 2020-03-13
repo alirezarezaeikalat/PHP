@@ -43,7 +43,8 @@ define("NAME", "Alireza");
     c. we can remove the last element:
         $poped = array_pop($people); 
     d. We can use count($people);   to see the length of the arrays
-    e. we can merge two array together : $people3 = array_merge($people , $people2);
+    e. we can merge two array together : 
+        $people3 = array_merge($people , $people2);
 
 10. Associative arrayes:
 
@@ -60,7 +61,8 @@ define("NAME", "Alireza");
     ];
     or 
     $blogs = [
-      ['title' => 'mario kart', 'page' => 32, 'content' => 'lorem']
+      ['title' => 'mario kart', 'page' => 32, 'content' => 'lorem'],
+      ['title' => 'mario party', 'page' => 42, 'content' => 'lorem']
     ];
 
 12. Loops:
@@ -139,3 +141,25 @@ regular expression. (regex and var are strings)
 
 26. in mysql there is no string for column instead it has VARCHAR you can
 use this with max-length of 255, and use TIMESTAMP for created_at
+
+27. When we make the id auto increment if we delete a row, the next id
+is somehow is like that row in not deleted, you can change this by 
+updating the auto increment of id
+
+28. We can connect to database using MySQLi or PDO:
+    check the index.php file for the instruction of using MySQLi
+    mysqli_connect($host, $user, $password, $database)
+    mysqli_connect_error()
+
+29. get data from database:
+
+    a. first create your query as string
+    b. then use $result = mysqli_query($conn, $sql); to perform the query 
+    c. then fetch the data: 
+        $pizzas = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+30. after getting the data is good practice to free the $result and
+    close the connection:
+
+    a. mysqli_free_result($result);
+    b. mysqli_close($conn);
