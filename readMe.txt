@@ -163,3 +163,123 @@ updating the auto increment of id
 
     a. mysqli_free_result($result);
     b. mysqli_close($conn);
+
+31. We can use explode(',' , $pizzas[0]['ingredients']) to take
+  array out of strings
+
+[ATTENTION]
+32. we can use : instead of starting { and use endforeach instead
+  of the }
+
+    <?php foreach($pizzas as $pizza): ?>
+    <?php endforeach; ?>
+
+    ///////// another example  ////
+
+    <?php if(): ?>
+    <?php else: ?>
+    <?php endif; ?>
+
+33. When ever you want to add to or get from database that comes
+  from user use $email = mysqli_real_escape_string($_GET['$email']);
+
+34. saving data to data base use:
+    a. $email = mysqli_real_escape_string($conn, $_POST['email']);
+    b. $sql = INSERT INTO pizzas(email) VALUES ('$email')";
+    c. if(mysqli_query($conn, $sql)){
+          echo 'ok';
+        }else{
+          echo 'db error' . mysqli_error();
+        }
+
+35. when we get data from database:
+  we can use mysqli_fetch_all($result, MYSQLI_ASSOC); for getting all
+  the rows but if there is one row we can use 
+  mysqli_fetch_assoc($result);
+
+36. We can add additional info to query string and get that in
+$_GET[]
+
+37. For deleting we need form and hidden input to POST the id
+
+38. ternary operators return a value :
+  $score = 50;
+  $val = $score > 40 ? 'high score' : 'low score :(';
+  echo $val;
+
+39. superglobals are the associative arrays that can be accessed any 
+  where:
+    $_POST[] , $_GET[] , $_SERVER[]
+    example of server super global:
+      a. $_SERVER['SERVER_NAME'] : bring back the server name
+      B. $_SERVER['REQUEST_METHOD] : GET or POST
+      c. $_SERVER['SCRIPT_FILENAME'] : complete file name
+      d. $_SERVER['PHP_SELF'] : endpoint of filename
+      e. $_SERVER['QUERY_STRING] : everything after ? in query string of url
+40. sessions are another super global:
+   // sessions, store data on server, and keep it between requests,
+    sessions last until we close the browser
+    
+    to use session :
+      a. first we use session_start() on every page that we want to use
+          sessions
+      b. then store the session, for example: $_SESSIOM['name'] = 'alireza'
+
+      c. Then we can use it in any page of the app
+
+41. we can use unset($_SESSION['name']) to unset a variable
+    we can use session_unset(); to unset all the session variables
+
+[ATTENTION]
+42. We can use Null coalesc operator to make backup value for 
+  a variable:
+                $name = $_SESSION['name'] ?? 'Guest';
+
+43. To create cookie we use setcookie() function and we use it by $_COOKIE['']
+
+44. There are some functions that works with files:
+
+    a. file_exist($file);
+    b. readfile($file);
+    c. copy($file, 'newFile.txt'); : if there is no newFile it will create it
+    d. realpath($file) : give the path of the file
+    e. filesize($file) : give the byte of the file
+    f. rename($file, 'newName');
+    g. mkdir(ghasem) : makes a new directory
+
+45. There are a better way to work with files:
+    a.open the file with $handle = fopen($file, 'r,w,a')
+          check the links for flag
+
+    b. then use fread($handle) or fwrite($handel, '') for 
+        reading or writing, check flag list for the position
+        of the POINTER
+
+    c. use fgets($handle) for reading a single line
+
+    d. use fgetc($handle) for reading a single character
+
+[ATTENTION] : always pay attention to the position of the POINTER
+
+46. object oriented in php is much like C++ :
+
+    class User {
+      private $name;
+      private $email;
+
+      public function _construct($name, $email){
+        $this->name = $name;
+        $this->email = $email;
+      }
+      public function login(){
+        echo $this->name . ' logged in';
+      }
+      public function getName(){
+        return $this->name;
+      }
+      public function setName($name){
+        if(is_string($name)){
+          
+        }
+      }
+    }

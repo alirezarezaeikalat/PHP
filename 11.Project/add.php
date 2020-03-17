@@ -1,5 +1,6 @@
 <?php
 
+include('config/db_connect.php');
 $errors = ['email' => '', 'pizza-title' => '', 'ingredients' => ''];
 $email = $title = $ingredients = '';
 
@@ -18,7 +19,7 @@ if (isset($_POST['submit'])) {
     $errors['pizza-title'] = 'A title is required <br />';
   } else {
     $title = $_POST['pizza-title'];
-    if (!preg_match('/^[a-zA-Z]+$/', $title)) {
+    if (!preg_match('/^[a-zA-Z\s]+$/', $title)) {
       $errors['pizza-title'] = 'Title must be letters and spaces only';
     }
   }
@@ -35,16 +36,29 @@ if (isset($_POST['submit'])) {
 
   if(array_filter($errors)){
     //echo 'errors in the form';
-  } else {
+  }else{
     //echo 'form is valid';
-    header('Location: index.php');
+    $email = mysqli_real_escape_string($conn, $_POST['email']);
+    $title = mysqli_real_escape_string($conn, $_POST['pizza-title']);
+    $ingredients = mysqli_real_escape_string($conn, $_POST['ingredients']);
+
+    // Create sql for saving
+    $sql = "INSERT INTO pizzas(title, email, ingredients) VALUES ('$title', '$email', '$ingredients')";
+    
+    // Save to db and check it
+    if(mysqli_query($conn, $sql)){
+      header('Location: index.php');
+    } else {
+      echo 'query error' . mysqli_error($conn);
+    }
+    
   }
 
 } // End of POST check
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<?php include('header.php') ?>
+<?php include('templates/header.php') ?>
 
 <section class="container grey-text">
   <div class="row">
@@ -88,6 +102,6 @@ if (isset($_POST['submit'])) {
 
 </section>
 
-<?php include('footer.php') ?>
+<?php include('templates/footer.php') ?>
 
 </html>

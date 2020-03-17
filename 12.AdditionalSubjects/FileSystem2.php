@@ -1,10 +1,8 @@
 <?php 
-  $radius = 5;
-  $pi = 3.14;
-  // basic
-  echo $pi * $radius**2;
-  echo floor($pi);
-  echo ceil($pi);
+
+  $file = 'test.txt';
+  // opening the file
+  $handle = fopen($file, 'r');
 ?>
 <html lang="en">
 <head>
@@ -13,10 +11,6 @@
   <title>Document</title>
 </head>
 <body>
-  <h1><?php echo "Hello ninjas"; ?></h1>
-  <p></p>
-  <p></p>
-  <p></p>
   
 </body>
 </html>
